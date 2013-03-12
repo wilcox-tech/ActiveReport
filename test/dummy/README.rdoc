@@ -1,0 +1,4 @@
+= Test app for ActiveReport
+
+This is a generic testing application for ActiveReport.
+

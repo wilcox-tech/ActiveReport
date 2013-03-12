@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 1
+  payment_type: Credit Card
+  total_price: 9.99
+
+two:
+  customer_id: 1
+  payment_type: Cheque
+  total_price: 9.99
+
+three:
+  customer_id: 3
+  payment_type: Credit Card
+  total_price: 19.99

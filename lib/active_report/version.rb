@@ -1,0 +1,3 @@
+module ActiveReport
+  VERSION = "0.0.1"
+end

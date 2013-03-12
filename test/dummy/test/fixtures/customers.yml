@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Andrew Wilcox
+  country: GB
+
+two:
+  name: Horst Burkhardt
+  country: AU
+
+three:
+  name: Patrick Stump
+  country: US
+
+four:
+  name: Elizabeth Myers
+  country: US
+
+five:
+  name: José Valim
+  country: PL
+
+six:
+  name: Tambra Wilcox
+  country: US

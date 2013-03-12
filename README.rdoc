@@ -1,0 +1,34 @@
+= ActiveReport
+
+This gem is currently in active development.  It needs a lot of documentation and test work before it can really be useful.
+
+== The goal
+
+Java reporting libraries have a lot of flexibility, but they are verbose, require a lot of manual SQL, and are difficult to maintain.
+
+Ruby reporting libraries are great, but none plug directly in to Rails apps to make it a breeze to add to an existing project.  They also don't have a lot of the advanced features of their Java counterparts (such as JasperReports).
+
+ActiveReport aims to bridge the gap by bringing the power of Java reporting libraries to Rails, using a very simple and familiar interface.
+
+== An example report
+
+  class MyAwesomeReport < ActiveReport::Base
+    reports_on :orders
+    join_on :customers
+    date_range_on :orders, :ordered_on
+    group :customers, :country
+    column :orders, :payment_types, :count => true
+  end
+
+This will (eventually) allow you to generate a report by visiting (some URL, like /reports/my_awesome_report) in your Rails app.  The report will contain a listing of countries you have received orders from, and the count of payment types.  Something like:
+
+  Australia
+  Credit card      10
+  Cheque            7
+  
+  United Kingdom
+  Cash             11
+  Credit card       8
+  Cheque            1
+
+At least that's the plan.  The API and output may look slightly different as development progresses.  :)
