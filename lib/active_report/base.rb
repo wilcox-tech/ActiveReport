@@ -49,7 +49,7 @@ module ActiveReport
             group[:name] = grouping
             group[:count] = count
             group[:column_defs] = cols = @@columns.map { |c| c.model_column }
-            group[:rows] = data.select(cols)
+            group[:rows] = data.select(cols).where(@@group.model_column => grouping).uniq
             result[:groups] << group
           end
         else
