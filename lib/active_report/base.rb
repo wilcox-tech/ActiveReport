@@ -1,3 +1,4 @@
+require 'active_report/helper_methods'
 require 'active_report/column'
 
 module ActiveReport
