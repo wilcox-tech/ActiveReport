@@ -9,16 +9,20 @@ module ActiveReport
       @options = options
     end
 
+    def model_column
+      @model_column
+    end
+
     def name
       "#{@model.to_s.humanize}:#{@model_column.to_s.humanize}"
     end
 
-    def retrieve_values
-      @model_instance.pluck(@model_column.to_sym)
+    def retrieve_with_data(data)
+      data.pluck(@model_column.to_sym)
     end
 
-    def retrieve_value_counts
-      values = @model_instance.pluck(@model_column.to_sym).to_a
+    def retrieve_value_counts(data)
+      values = retrieve_with_data(data).to_a
       values.uniq.map { |val| [val, values.count(val)] }
     end
 
