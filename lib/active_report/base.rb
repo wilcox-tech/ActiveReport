@@ -41,22 +41,26 @@ module ActiveReport
         model = HelperMethods.make_a_model(@@model)
         orders = @@sorts.map { |model, prop| "#{model}.#{prop}" }
         data = model.joins(@@joins).order(orders)
+        result = { :groups => [] }
         if !@@group.nil?
           group_values = @@group.retrieve_value_counts(data)
           group_values.each do |grouping, count|
-            puts "#{grouping} (#{count} total)"
-            print_column_data(data.where(@@group.model_column => grouping))
+            group = {}
+            group[:name] = grouping
+            group[:count] = count
+            group[:column_defs] = cols = @@columns.map { |c| c.model_column }
+            group[:rows] = data.select(cols)
+            result[:groups] << group
           end
         else
-          print_column_data(data)
+          group = {}
+          group[:name] = "All"
+          group[:column_defs] = cols = @@columns.map { |c| c.model_column }
+          group[:rows] = d = data.select(cols)
+          group[:count] = d.count
+          result[:groups] << group
         end
-      end
-
-      private
-      def print_column_data(data)
-        @@columns.each do |column|
-          puts "#{column.name}: #{column.retrieve_with_data(data)}"
-        end
+        result
       end
     end
 

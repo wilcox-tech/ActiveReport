@@ -1,5 +1,4 @@
 module ActiveReport
-  extend ActiveSupport::Autoload
-
-  autoload :Base
+  require 'active_report/base'
+  require 'active_report/engine'
 end
