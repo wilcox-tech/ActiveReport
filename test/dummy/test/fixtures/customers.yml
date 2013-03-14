@@ -1,25 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+gb_customer:
   name: Andrew Wilcox
   country: GB
 
-two:
+au_customer:
   name: Horst Burkhardt
   country: AU
 
-three:
+us_singer:
   name: Patrick Stump
   country: US
 
-four:
+us_programmer:
   name: Elizabeth Myers
   country: US
 
-five:
+pl_customer:
   name: José Valim
   country: PL
 
-six:
+us_artist:
   name: Tambra Wilcox
   country: US
