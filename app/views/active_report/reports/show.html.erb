@@ -1,0 +1,22 @@
+<% @report_contents[:groups].each do |group| %>
+<h2><%= group[:name] %> (<%= group[:count] %>)</h2>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+    <% group[:column_defs].each do |col| %>
+      <th><%= t("reports.#{@report_name}.column.#{col.to_s}") %></th>
+    <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% group[:rows].each do |row| %>
+    <tr>
+      <% group[:column_defs].each do |col| %>
+        <td><%= row[col] %></td>
+      <% end %>
+    </tr>
+    <% end %> 
+  </tbody>
+</table>
+<% end %>

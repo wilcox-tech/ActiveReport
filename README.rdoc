@@ -10,17 +10,27 @@ Ruby reporting libraries are great, but none plug directly in to Rails apps to m
 
 ActiveReport aims to bridge the gap by bringing the power of Java reporting libraries to Rails, using a very simple and familiar interface.
 
+== Setup
+
+In your Gemfile:
+
+  gem 'active_report', :git => github.com/wilcox-tech/ActiveReport.git
+
+In your <tt>config/routes.rb</tt>:
+
+  mount ActiveReport::Engine, :at => '/reports' # (or wherever you want it)
+
 == An example report
 
   class MyAwesomeReport < ActiveReport::Base
     reports_on :orders
-    join_on :customers
+    join_with :customers
     date_range_on :orders, :ordered_on
     group :customers, :country
     column :orders, :payment_types, :count => true
   end
 
-This will (eventually) allow you to generate a report by visiting (some URL, like /reports/my_awesome_report) in your Rails app.  The report will contain a listing of countries you have received orders from, and the count of payment types.  Something like:
+This will allow you to generate a report by visiting $mountpoint/MyAwesomeReport (or $mountpoint/my_awesome) in your Rails app.  The report will contain a listing of countries you have received orders from, and the count of payment types.  Something like:
 
   Australia
   Credit card      10

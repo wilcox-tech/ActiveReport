@@ -1,0 +1,5 @@
+<h1><%= t('reports.index.all_reports') %></h1>
+
+<% ActiveReport::Base.descendants.each do |report| %>
+  <%= link_to t('reports.#{report.to_s}.title'), "#{report}" %>
+<% end %>
