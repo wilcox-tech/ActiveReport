@@ -19,3 +19,23 @@ four:
   customer: pl_customer
   payment_type: PayPal
   total_price: 9.73
+
+five:
+  customer: us_singer
+  payment_type: PayPal
+  total_price: 17.99
+
+six:
+  customer: us_programmer
+  payment_type: Credit Card
+  total_price: 27.99
+
+seven:
+  customer: us_artist
+  payment_type: PayPal
+  total_price: 9.99
+
+eight:
+  customer: us_programmer
+  payment_type: Cash
+  total_price: 3.99
