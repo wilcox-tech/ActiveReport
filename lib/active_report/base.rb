@@ -9,6 +9,8 @@ module ActiveReport
       @@columns = []
       @@sorts = {}
       @@scopes = {}
+      @@group = nil
+      @@model = nil
 
       # Defines the model on which this report shows data from.
       def reports_on(model)
@@ -41,6 +43,9 @@ module ActiveReport
         model = HelperMethods.make_a_model(@@model)
         orders = @@sorts.map { |model, prop| "#{model}.#{prop}" }
         data = model.joins(@@joins).order(orders)
+        if @@scopes.has_key? @@model.to_sym
+          data = data.scope(@@scopes[@@model.to_sym])
+        end
         result = { :groups => [] }
         if !@@group.nil?
           group_values = @@group.retrieve_value_counts(data)
