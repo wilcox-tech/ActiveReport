@@ -43,8 +43,10 @@ module ActiveReport
         model = HelperMethods.make_a_model(@@model)
         orders = @@sorts.map { |model, prop| "#{model}.#{prop}" }
         data = model.joins(@@joins).order(orders)
-        if @@scopes.has_key? @@model.to_sym
-          data = data.scope(@@scopes[@@model.to_sym])
+        if @@scopes.has_key? @@model.tableize.to_sym
+          # reflectively send the scope name to the class
+          # (calling .scope(:scope_name) returns the proc, not the result)
+          data = data.send(@@scopes[@@model.tableize.to_sym])
         end
         result = { :groups => [] }
         if !@@group.nil?
@@ -59,10 +61,10 @@ module ActiveReport
           end
         else
           group = {}
-          group[:name] = "All"
+          group[:name] = ""
           group[:column_defs] = cols = @@columns.map { |c| c.model_column }
-          group[:rows] = d = data.select(cols)
-          group[:count] = d.count
+          group[:rows] = d = data
+          group[:count] = ""
           result[:groups] << group
         end
         result
